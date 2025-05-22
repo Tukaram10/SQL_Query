@@ -77,6 +77,28 @@ SELECT COALESCE((
 ), NULL) AS second_highest_salary;
 
 -- second hightest salary from 3 department 
+CREATE TABLE Departments (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(100)
+);
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(100),
+    salary INT,
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+INSERT INTO Employees (emp_id, emp_name, salary, dept_id) VALUES
+(101, 'Alice', 50000, 1),
+(102, 'Bob', 60000, 2),
+(103, 'Charlie', 80000, 2),
+(104, 'David', 55000, 3),
+(105, 'Eva', 75000, 3),
+(106, 'Frank', 70000, 1),
+(107, 'Grace', 90000, 2),
+(108, 'Hannah', 65000, 3),
+(109, 'Ian', 85000, 1);
+	
 SELECT salary,department
 FROM emp
 WHERE salary = (
