@@ -75,3 +75,14 @@ SELECT COALESCE((
   ORDER BY salary DESC
   OFFSET 1 LIMIT 1
 ), NULL) AS second_highest_salary;
+
+-- second hightest salary from 3 department 
+SELECT salary,department
+FROM emp
+WHERE salary = (
+    SELECT DISTINCT salary
+    FROM emp
+    ORDER BY salary DESC
+    OFFSET 1 LIMIT 1
+);
+
